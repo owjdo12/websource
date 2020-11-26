@@ -10,29 +10,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class add
+ * Servlet implementation class InfoServlet
  */
-@WebServlet("/Add")
-public class AddServlet extends HttpServlet {
+@WebServlet("/InfoServlet")
+public class InfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		//사용자가 보낸 값 가져와서 더하기 한 후 결과값 출력
-		int num1 = Integer.parseInt(request.getParameter("num1"));
-		int num2 = Integer.parseInt(request.getParameter("num2"));
+
+		//사용자의 선택값 가져오기
+		String name= request.getParameter("name");
+		String id= request.getParameter("id");
+		String password= request.getParameter("password");
+		String gender= request.getParameter("gender");
+		String job= request.getParameter("job");
 		
-		int sum = num1+num2;
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out= response.getWriter();
 		
-		//보여지는 페이지에 대한 컨텐츠 타입 설정
-		response.setContentType("text/html; charset=urf-8");
-		PrintWriter out = response.getWriter();
-		out.print("<html><head><title>덧셈 프로그램</title></head>");
-		out.print("<body><h2>덧셈결과</h2>");
-		out.print("<h3>"+num1+"+"+num2+"="+sum);
+		out.print("<html><head><title>개인정보확인</title></head>");
+		out.print("<body>");
+		out.print("<ul><li>이름: "+name+"</li>");
+		out.print("<li>아이디: "+id+"</li>");
+		out.print("<li>비밀번호: "+password+"</li>");
+		out.print("<li>성별: "+gender+"</li>");
+		out.print("<li>직업: "+job+"</li></ul>");
 		out.print("</body></html>");
 	}
 
